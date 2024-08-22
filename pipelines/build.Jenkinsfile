@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { docker { image 'python:3.12.5-alpine3.20' } }
     environment {
         NEXUS_CREDENTIALS_ID = "Nexus"
         NEXUS_URL = "http://localhost:8081"
@@ -10,17 +10,14 @@ pipeline {
         stage('Install Python') {
             steps {
                 sh '''
-                   sudo apt-get update
-                   sudo apt-get install python3.10
-                   python3.10 --version
-                   python3 --version
+                   python --version
                 '''
             }
         }
         stage('Install Dependencies') {
             steps {
                 sh '''
-                   python3 -m venv venv
+                   python -m venv venv
                    . venv/bin/activate
 
                    # now packages should be installed from your Nexus pypi.org-central, not from the original pypi.org!
@@ -33,7 +30,7 @@ pipeline {
             steps {
                 sh '''
                   . venv/bin/activate
-                  python3 -m unittest discover -s tests
+                  python -m unittest discover -s tests
                 '''
             }
         }
