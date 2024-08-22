@@ -1,5 +1,7 @@
 pipeline {
-    agent { label 'general' { image 'python:3.12.5-alpine3.20' } }
+    agent {
+        label 'general'
+    }
     environment {
         NEXUS_CREDENTIALS_ID = "Nexus"
         NEXUS_URL = "http://localhost:8081"
