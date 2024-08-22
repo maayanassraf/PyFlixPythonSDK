@@ -25,3 +25,4 @@ class Client:
         }
         response = requests.get(endpoint, headers=headers)
         return response.json()
+
