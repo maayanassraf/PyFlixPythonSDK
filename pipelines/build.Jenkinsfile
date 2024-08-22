@@ -7,6 +7,16 @@ pipeline {
         DEV_HOSTED_REPO_NAME = "py-dev"
     }
     stages {
+        stage('Install Python') {
+            steps {
+                sh '''
+                   apt-get update
+                   apt-get install python3.10
+                   python3.10 --version
+                   python3 --version
+                '''
+            }
+        }
         stage('Install Dependencies') {
             steps {
                 sh '''
