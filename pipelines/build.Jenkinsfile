@@ -10,8 +10,8 @@ pipeline {
         stage('Install Python') {
             steps {
                 sh '''
-                   apt-get update
-                   apt-get install python3.10
+                   sudo apt-get update
+                   sudo apt-get install python3.10
                    python3.10 --version
                    python3 --version
                 '''
